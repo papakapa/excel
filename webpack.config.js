@@ -15,6 +15,7 @@ const jsLoaders = () => {
       loader: 'babel-loader',
       options: {
         presets: ['@babel/preset-env'],
+        plugins: ['@babel/plugin-proposal-class-properties']
       },
     },
   ];
@@ -22,6 +23,8 @@ const jsLoaders = () => {
   if (isDev) {
     loaders.push('eslint-loader');
   }
+
+  return loaders;
 };
 
 console.log('is prod ====', isProd);
@@ -48,8 +51,7 @@ module.exports = {
   devtool: isDev ? 'source-map' : false,
   devServer: {
     port: 3000,
-    hot: isDev,
-    open: true,
+    hot: isDev
   },
   plugins: [
     new CleanWebpackPlugin(),
